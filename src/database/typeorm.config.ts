@@ -4,7 +4,7 @@ import type { EnvVariables } from "../config/env.schema.js";
 export type TypeOrmEnviroment = Readonly<Pick<
 EnvVariables, 'NODE_ENV'|'DB_HOST'|'DB_PORT'|'DB_USER'|'DB_PASSWORD'|'DB_NAME' >>
 
-export function createTypeOrmOption(
+export function createTypeOrmOptions(
     enviroment: TypeOrmEnviroment): DataSourceOptions{
         return {
             type: 'postgres',

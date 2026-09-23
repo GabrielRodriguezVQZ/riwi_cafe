@@ -5,9 +5,17 @@ import { AppService } from './app.service.js';
 import { HealthModule } from './health/health.module.js';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { envSchema, EnvVariables } from './config/env.schema.js';
-import { TablesModule } from './module/tables/tables.module.js';
+import { TablesModule } from './modules/tables/tables.module.js';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { createTypeOrmOption } from './database/typeorm.config.js';
+import { createTypeOrmOptions } from './database/typeorm.config.js';
+import { UsersModule } from './modules/users/users.module.js';
+import { CustomersModule } from './modules/customers/customers.module.js';
+import { ReservationsModule } from './modules/reservations/reservations.module.js';
+import { ProductsModule } from './modules/products/products.module.js';
+import { InventoryModule } from './modules/inventory/inventory.module.js';
+import { OrdersModule } from './modules/orders/orders.module.js';
+import { PaymentsModule } from './modules/payments/payments.module.js';
+import { AuthModule } from './modules/auth/auth.module.js';
 
 export const { ObserveModule, ObserveInstrument } = createObserveModule();
 
@@ -23,7 +31,7 @@ export const { ObserveModule, ObserveInstrument } = createObserveModule();
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: (configService: ConfigService<EnvVariables, true>) => ({
-        ...createTypeOrmOption({
+        ...createTypeOrmOptions({
           NODE_ENV: configService.get('NODE_ENV',{infer: true}),
           DB_HOST: configService.get('DB_HOST',{infer: true}),
           DB_PORT: configService.get('DB_PORT',{infer: true}),
@@ -36,6 +44,14 @@ export const { ObserveModule, ObserveInstrument } = createObserveModule();
     
     HealthModule,
     TablesModule,
+    UsersModule,
+    CustomersModule,
+    ReservationsModule,
+    ProductsModule,
+    InventoryModule,
+    OrdersModule,
+    PaymentsModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
