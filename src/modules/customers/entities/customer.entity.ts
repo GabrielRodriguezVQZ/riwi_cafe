@@ -2,7 +2,11 @@ import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from "typeor
 
 
 @Entity({name: 'customers'})
+<<<<<<< HEAD
 export class Customer {
+=======
+export class Reservation {
+>>>>>>> origin/feature/table-module
 @PrimaryGeneratedColumn('uuid', {name: 'id_customer'})
 id_customer: string;
 
