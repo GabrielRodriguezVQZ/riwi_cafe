@@ -1,4 +1,4 @@
-import { existsSync } from "node:fs";
+import { existsSync } from "node:fs"; //File System
 import { dirname, join, resolve } from "node:path";
 import { loadEnvFile } from "node:process";
 import { fileURLToPath } from "node:url";
@@ -17,8 +17,6 @@ if(existsSync(envFilePath)){
 const enviroment = envSchema.parse(process.env);
 const databaseDirectory = dirname(fileURLToPath(import.meta.url))
 
-console.log(databaseDirectory)
-
 export const AppDataSource = new DataSource({
     ...createTypeOrmOptions(enviroment),
 
@@ -33,4 +31,4 @@ export const AppDataSource = new DataSource({
 
 
 
-/*C:\Users\ACER-NITROLITE\OneDrive\Desktop\Ruta avanzada\Nestjs\restaurante-api> */
+/*file\\C:\Users\ACER-NITROLITE\OneDrive\Desktop\Ruta avanzada\Nestjs\restaurante-api> */

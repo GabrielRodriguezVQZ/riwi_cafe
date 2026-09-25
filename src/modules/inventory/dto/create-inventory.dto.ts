@@ -25,11 +25,6 @@ export class CreateInventoryDto {
     @Type(()=>Number)@IsNumber({maxDecimalPlaces: 3}, {message: 'minimo stock debe ser un número con maximo 3 decimales'})
     @Min(0)
     currentStop: number;
-
-
-
-
-
 }
 
     
