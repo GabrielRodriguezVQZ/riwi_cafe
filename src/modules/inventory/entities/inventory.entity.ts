@@ -20,7 +20,7 @@ export class InventoryItems {
     current_stock: number;
 
     @Column({name: 'is_active', type: 'boolean', default: true})
-    is_active: true;
+    is_active: true
 
     @CreateDateColumn({name: 'created_at', type: 'timestamptz'})
     created_at: Date;
