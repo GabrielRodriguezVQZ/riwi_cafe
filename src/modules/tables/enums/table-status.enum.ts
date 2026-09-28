@@ -3,4 +3,3 @@ export enum TableStatus {
   OCCUPIED = 'OCCUPIED',
   OUT_OF_SERVICE = 'OUT_OF_SERVICE',
 }
-
