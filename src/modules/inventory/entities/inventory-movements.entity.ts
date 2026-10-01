@@ -1,7 +1,9 @@
-import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { MovementType } from "../enums/movement-type.enum.js";
 import { MovementSource } from "../enums/movement_source.enum.js";
 import { InventoryItems } from "./inventory.entity.js";
+import { User } from "../../users/entities/user.entity.js";
+import { OrderItems } from "../../orders/entities/order-item.entity.js";
 
 @Entity({name: 'iventory_movements'})
 export class inventoryMovements {
@@ -31,7 +33,20 @@ export class inventoryMovements {
     reason: string | null;
 
     @CreateDateColumn({name: 'created_at', type: 'timestamptz'})
-    created_at: Date
+    created_at: Date;
 
-    @ManyToOne( () => InventoryItems, (inventoryItems) => inventoryItems.)
+    @ManyToOne(() => InventoryItems, {nullable: false, onDelete: 'RESTRICT'},)
+    @JoinColumn({name: 'inventory_item_id', referencedColumnName: 'id_inventory_item', foreignKeyConstraintName: 'fk_iventory_movements_inventory_items'})
+    id_inventory_item: InventoryItems;
+
+    @ManyToOne(() => OrderItems, {nullable: true, onDelete: 'RESTRICT'})
+    @JoinColumn({name: 'order_item_id', referencedColumnName: 'id_order_item', foreignKeyConstraintName: 'fk_iventory_movements_order_items' })
+    id_order_item: OrderItems;
+
+    @ManyToOne(()=> User, {nullable: false, onDelete: 'RESTRICT',})
+    @JoinColumn({name: 'performed_by_user_id', referencedColumnName: 'id_user', foreignKeyConstraintName: 'fk_inventory_movements_users'})
+    id_user: User;
+
+
+    
 }

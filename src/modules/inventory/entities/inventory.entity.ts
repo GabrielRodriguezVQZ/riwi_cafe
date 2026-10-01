@@ -4,8 +4,8 @@ import { UnitBase } from "../enums/unit-base.enum.js";
 @Entity({ name: 'inventory_items'})
 @Unique(['code_product', 'name_product'])
 export class InventoryItems {
-    @PrimaryGeneratedColumn('uuid', {name: 'id_inventory_items'})
-    id_inventory_items: string;
+    @PrimaryGeneratedColumn('uuid', {name: 'id_inventory_item'})
+    id_inventory_item: string;
 
     @Column({unique: true, name: 'code_product', type: 'varchar', length: 50})
     code_product: string;
